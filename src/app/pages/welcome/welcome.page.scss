@@ -1,0 +1,62 @@
+/* Forcer le scroll interne d’ion-content à utiliser flex */
+ion-content::part(scroll) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container interne */
+.welcome-container {
+  --background: var(--background-light);
+}
+
+/* L’élément wrapper peut rester en flex */
+.content-wrapper {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logo pulsant */
+.logo {
+  width: 150px;
+  height: auto;
+  animation: heartbeat 1.4s infinite ease-in-out;
+  transform-origin: center;
+}
+
+/* Nom de l’app */
+.app-name {
+  margin-top: 15px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Message */
+.message {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* Animation pulsation */
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.15);
+  }
+  30% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.15);
+  }
+  60% {
+    transform: scale(1);
+  }
+}

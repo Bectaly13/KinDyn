@@ -1,13 +1,11 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>welcome</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="welcome-container">
+  <div class="content-wrapper">
+    <img src="assets/icon/kindyn.png" class="logo" />
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">welcome</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <div class="app-name">KinDyn</div>
+
+    <div class="message">
+      {{ loadingMessage }}
+    </div>
+  </div>
 </ion-content>
