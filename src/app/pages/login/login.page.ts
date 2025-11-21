@@ -26,8 +26,10 @@ interface User {
 })
 export class LoginPage implements ViewWillEnter {
   lang: string = "";
+  
   login: string = "";
   password: string = "";
+  
   error: string = "";
 
   async ionViewWillEnter() {

@@ -1,13 +1,50 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="login-container">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <app-header titleFR="Créer un compte" titleEN="Register" [lang]="lang"/>
+
+  <div class="center-wrapper">
+    <div class="form-wrapper">
+      <h2>{{ lang === 'FR' ? 'Créer un compte' : 'Register' }}</h2>
+
+      <!-- Login -->
+      <input type="text" 
+             placeholder="{{ lang === 'FR' ? 'Nom d\'utilisateur' : 'Username' }}" 
+             [(ngModel)]="login" />
+
+      <!-- Prénom / Nom -->
+      <div class="row">
+        <input type="text" 
+               placeholder="{{ lang === 'FR' ? 'Prénom' : 'First name' }}" 
+               [(ngModel)]="firstName" />
+        <input type="text" 
+               placeholder="{{ lang === 'FR' ? 'Nom' : 'Last name' }}" 
+               [(ngModel)]="lastName" />
+      </div>
+
+      <!-- Mot de passe / Confirmation -->
+      <div class="row">
+        <input type="password" 
+               placeholder="{{ lang === 'FR' ? 'Mot de passe' : 'Password' }}" 
+               [(ngModel)]="password" />
+        <input type="password" 
+               placeholder="{{ lang === 'FR' ? 'Confirmer mot de passe' : 'Confirm password' }}" 
+               [(ngModel)]="confirmPassword" />
+      </div>
+
+      @if(error) {
+        <div class="error" *ngIf="error">
+          {{ error }}
+        </div>
+      }
+
+      <button (click)="tryRegister()">
+        {{ lang === 'FR' ? 'Créer un compte' : 'Register' }}
+      </button>
+
+      <span class="register-btn" (click)="goLogin()">
+        {{ lang === 'FR' ? 'Déjà un compte ? Connectez-vous ici' : 'Already have an account? Login here' }}
+      </span>
+    </div>
+  </div>
+
 </ion-content>

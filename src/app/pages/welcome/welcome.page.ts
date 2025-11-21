@@ -33,13 +33,6 @@ export class WelcomePage implements ViewWillEnter {
       this.lang = "FR";
     }
 
-    if(this.lang == "FR") {
-      this.loadingMessage = "Préférences de langue récupérées.";
-    }
-    else {
-      this.loadingMessage = "Language preferences fetched.";
-    }
-
     let database_data = await this.storage.get("db");
     if(!database_data) {
       if(this.lang == "FR") {
@@ -54,6 +47,22 @@ export class WelcomePage implements ViewWillEnter {
     }
 
     if(this.lang == "FR") {
+      this.loadingMessage = "Récupération des données utilisateur...";
+    }
+    else {
+      this.loadingMessage = "Fetching user data...";
+    }
+
+    let path = "";
+    let user_data = await this.storage.get("user");
+    if(!user_data) {
+      path = "login";
+    }
+    else {
+      path = "home";
+    }    
+
+    if(this.lang == "FR") {
       this.loadingMessage = "Redirection...";
     }
     else {
@@ -61,7 +70,7 @@ export class WelcomePage implements ViewWillEnter {
     }
 
     setTimeout(() => {
-        this.router.navigate(["login"]);
-    }, 4000);    
+        this.router.navigate([path]);
+    }, 3000);    
   }
 }
