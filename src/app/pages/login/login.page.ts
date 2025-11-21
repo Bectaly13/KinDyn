@@ -39,7 +39,7 @@ export class LoginPage implements ViewWillEnter {
 
     const users: User[] = await this.db.getTable("users");
 
-    const user = users.find(u => u.login === this.login && u.password === this.password);
+    const user = users.find((u: User) => u.login === this.login && u.password === this.password);
 
     if (!user) {
       this.error = this.lang === 'FR' ? "Login ou mot de passe incorrect" : "Incorrect login or password";

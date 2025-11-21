@@ -92,7 +92,7 @@ export class RegisterPage implements ViewWillEnter {
     const users: User[] = await this.db.getTable("users");
 
     // Vérifier unicité du login
-    if (users.some(u => u.login === this.login)) {
+    if (users.some((u: User) => u.login === this.login)) {
       this.error = this.lang === "FR" ? "Ce login est déjà utilisé" : "Username already exists";
       return;
     }

@@ -27,9 +27,9 @@ export class DatabaseService {
       { "id": 2, "login": "bob.m", "password": "Bob12345!", "firstName": "Bob", "lastName": "Martin", "id_type": 1 },
       { "id": 3, "login": "carol.s", "password": "Carol123!", "firstName": "Carol", "lastName": "Simon", "id_type": 1 },
 
-      { "id": 4, "login": "dr.john", "password": "DrJohn2025!", "firstName": "John", "lastName": "Doe", "id_type": 2 },
-      { "id": 5, "login": "dr.emma", "password": "Emma2025!", "firstName": "Emma", "lastName": "Durand", "id_type": 2 },
-      { "id": 6, "login": "dr.olivier", "password": "Olivier2025!", "firstName": "Olivier", "lastName": "Petit", "id_type": 2 }
+      { "id": 4, "login": "john", "password": "DrJohn2025!", "firstName": "John", "lastName": "Doe", "id_type": 2 },
+      { "id": 5, "login": "emma", "password": "Emma2025!", "firstName": "Emma", "lastName": "Durand", "id_type": 2 },
+      { "id": 6, "login": "olivier", "password": "Olivier2025!", "firstName": "Olivier", "lastName": "Petit", "id_type": 2 }
     ],
     "userTypes": [
       { "id": 1, "type": "Patient" },
