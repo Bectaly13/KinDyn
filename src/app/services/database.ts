@@ -1,5 +1,21 @@
 import { Injectable } from '@angular/core';
 
+import { StorageService } from './storage';
+
+export interface User {
+  id: number;
+  login: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  id_type: number;
+}
+
+export interface UserType {
+  id: number;
+  type: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -20,4 +36,27 @@ export class DatabaseService {
       { "id": 2, "type": "Spécialiste" }
     ]
   };
+
+  constructor(
+    private storage: StorageService
+  ) { }
+
+  async get() {
+    return await this.storage.get("db") || this.db;
+  }
+
+  async update(db: any) {
+    await this.storage.set("db", db);
+  }
+
+  async updateTable(tableName: string, table: any) {
+    let db = await this.get();
+    db[tableName] = table;
+    await this.storage.set("db", db); 
+  }
+
+  async getTable(tableName: string) {
+    let db = await this.get();
+    return db[tableName];
+  }
 }

@@ -5,7 +5,12 @@
     <div class="app-name">KinDyn</div>
 
     <div class="message">
-      {{ loadingMessage }}
+      @if(lang == "FR") {
+        Redirection...
+      }
+      @else {
+        Redirecting...
+      }
     </div>
   </div>
 </ion-content>

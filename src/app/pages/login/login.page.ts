@@ -7,15 +7,7 @@ import { Router } from '@angular/router';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 
 import { StorageService } from 'src/app/services/storage';
-
-interface User {
-  id: number;
-  login: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  id_type: number;
-}
+import { DatabaseService, User } from 'src/app/services/database';
 
 @Component({
   selector: 'app-login',
@@ -38,14 +30,14 @@ export class LoginPage implements ViewWillEnter {
 
   constructor(
     private storage: StorageService,
-    private router: Router
+    private router: Router,
+    private db: DatabaseService
   ) { }
 
   async tryLogin() {
     this.error = "";
 
-    const db = await this.storage.get("db");
-    const users: User[] = db?.users || [];
+    const users: User[] = await this.db.getTable("users");
 
     const user = users.find(u => u.login === this.login && u.password === this.password);
 

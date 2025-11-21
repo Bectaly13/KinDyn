@@ -16,41 +16,24 @@ import { DatabaseService } from 'src/app/services/database';
 })
 export class WelcomePage implements ViewWillEnter {
   lang: string = "";
-  loadingMessage: string = "";
 
   constructor(
     private storage: StorageService,
     private router: Router,
-    private database: DatabaseService
+    private db: DatabaseService
   ) { }
 
   async ionViewWillEnter() {
-    this.loadingMessage = "...";
-
+    const DEFAULT_LANG: string = "FR";
     this.lang = await this.storage.get("lang");
     if(!this.lang) {
-      this.storage.set("lang", "FR");
-      this.lang = "FR";
+      await this.storage.set("lang", DEFAULT_LANG);
+      this.lang = DEFAULT_LANG;
     }
 
-    let database_data = await this.storage.get("db");
-    if(!database_data) {
-      if(this.lang == "FR") {
-        this.loadingMessage = "Récupération de la base de données...";
-      }
-      else {
-        this.loadingMessage = "Fetching database...";
-      }
-
-      database_data = this.database.db;
-      this.storage.set("db", database_data);
-    }
-
-    if(this.lang == "FR") {
-      this.loadingMessage = "Récupération des données utilisateur...";
-    }
-    else {
-      this.loadingMessage = "Fetching user data...";
+    let db = await this.storage.get("db");
+    if(!db) {
+      await this.db.update(this.db.db);
     }
 
     let path = "";
@@ -60,13 +43,6 @@ export class WelcomePage implements ViewWillEnter {
     }
     else {
       path = "home";
-    }    
-
-    if(this.lang == "FR") {
-      this.loadingMessage = "Redirection...";
-    }
-    else {
-      this.loadingMessage = "Redirecting...";
     }
 
     setTimeout(() => {

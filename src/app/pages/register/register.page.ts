@@ -5,16 +5,9 @@ import { IonContent, ViewWillEnter } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 
 import { HeaderComponent } from 'src/app/components/header/header.component';
-import { StorageService } from 'src/app/services/storage';
 
-interface User {
-  id: number;
-  login: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  id_type: number;
-}
+import { StorageService } from 'src/app/services/storage';
+import { DatabaseService, User } from 'src/app/services/database';
 
 @Component({
   selector: 'app-register',
@@ -40,7 +33,8 @@ export class RegisterPage implements ViewWillEnter {
 
   constructor(
     private storage: StorageService,
-    private router: Router
+    private router: Router,
+    private db: DatabaseService
   ) {}
 
   checkValidInput() {
@@ -95,8 +89,7 @@ export class RegisterPage implements ViewWillEnter {
     }
 
     // Récupérer la BDD
-    const db = await this.storage.get("db") || { users: [], userTypes: [{id:1, type:'Patient'}] };
-    const users: User[] = db.users || [];
+    const users: User[] = await this.db.getTable("users");
 
     // Vérifier unicité du login
     if (users.some(u => u.login === this.login)) {
@@ -115,8 +108,7 @@ export class RegisterPage implements ViewWillEnter {
     };
 
     users.push(newUser);
-    db.users = users;
-    await this.storage.set("db", db);
+    await this.db.updateTable("users", users);
 
     // Redirection vers login
     this.router.navigate(["login"]);
