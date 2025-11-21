@@ -2,27 +2,33 @@
 // https://ionicframework.com/docs/theming/
 
 :root {
-    --background-light: #fafafa;
-    --background-grey: #dedede;
+    --ion-font-family: 'Montserrat', sans-serif !important;
 
-    --header-background: #cfe9ff;
-    --header-border-bottom: #b9d8f7;
-    --header-title-color: #1a3e66;
+    --background-light: #fdfbf8;
+    --background-green: #dbeee0;
+
+    --header-background: rgb(219, 238, 224);
+    --header-border-bottom: #c2dcd9;
+    --header-title-color: #0f5e97;
     --header-lang-button-background: #ffffff;
     --header-lang-button-background-hover: #f6fbff;
     --header-lang-button-border: #aacded;
-    --header-lang-button-text-color: #1a3e66;
+    --header-lang-button-text-color: #0f5e97;
 
-    --text: #333;
-    --text-muted: #555;
+    --text: #333333;
+    --text-muted: #555555;
+    --title: #0f5e97;
 
     --input-border: #ccc;
-    --input-border-focus: #007aff;
+    --input-border-focus: #1c86cf;
+    --input-shadow-focus: rgba(0, 122, 255, 0.15);
 
-    --button: #007aff;
-    --button-hover: #005fcc;
+    --button: #1c86cf;
+    --button-hover: #1979ba;
 
-    --hypertext: #007aff;
+    --box-shadow: rgba(0, 0, 0, 0.3);
+
+    --hypertext: #1c86cf;
 
     --error: #d9534f;
 }

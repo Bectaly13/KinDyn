@@ -12,20 +12,21 @@
 }
 
 .form-wrapper {
-  width: 90%;
-  max-width: 400px;
+  width: 95%;
+  max-width: 450px;
   display: flex;
   flex-direction: column;
   gap: 15px;
   padding: 25px;
-  background-color: var(--background-grey); // gris clair pour contraster
+  background-color: var(--background-green);
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px var(--box-shadow);
 }
 
 h2 {
   text-align: center;
-  color: var(--text);
+  color: var(--title);
+  font-weight: bold;
 }
 
 input {
@@ -37,7 +38,7 @@ input {
 
   &:focus {
     border-color: var(--input-border-focus);
-    box-shadow: 0 0 0 2px rgba(0,122,255,0.15);
+    box-shadow: 0 0 0 2px var(--input-shadow-focus);
   }
 }
 

@@ -33,7 +33,7 @@ export class LoginPage implements ViewWillEnter {
   error: string = "";
 
   async ionViewWillEnter() {
-    this.lang = await this.storage.get("lang") || "FR"; 
+    this.lang = await this.storage.get("lang") || "FR";
   }
 
   constructor(
