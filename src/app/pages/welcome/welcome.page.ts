@@ -14,6 +14,7 @@ import { StorageService } from 'src/app/services/storage';
   imports: [IonContent, CommonModule, FormsModule]
 })
 export class WelcomePage implements ViewWillEnter {
+  lang: string = "";
   loadingMessage: string = "";
 
   constructor(
@@ -24,19 +25,19 @@ export class WelcomePage implements ViewWillEnter {
   async ionViewWillEnter() {
     this.loadingMessage = "...";
 
-    let lang_data = await this.storage.get("lang");
-    if(!lang_data) {
+    this.lang = await this.storage.get("lang");
+    if(!this.lang) {
       this.storage.set("lang", "FR");
     }
 
-    if(lang_data == "FR") {
+    if(this.lang == "FR") {
       this.loadingMessage = "Préférences de langue récupérées.";
     }
     else {
       this.loadingMessage = "Language preferences fetched.";
     }
 
-    if(lang_data == "FR") {
+    if(this.lang == "FR") {
       this.loadingMessage = "Redirection...";
     }
     else {
