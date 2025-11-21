@@ -1,0 +1,21 @@
+<div class="home-btn" (click)="go()">
+
+  <!-- Icône -->
+  <img 
+    class="icon" 
+    src="assets/pictograms/{{ icon() }}.png" 
+    alt="icon"
+  />
+
+  <!-- Texte -->
+  <div class="text-block">
+    <h3 class="title">
+      {{ lang() === 'FR' ? titleFR() : titleEN() }}
+    </h3>
+
+    <p class="subtitle">
+      {{ lang() === 'FR' ? subtitleFR() : subtitleEN() }}
+    </p>
+  </div>
+
+</div>

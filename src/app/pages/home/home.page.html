@@ -22,6 +22,50 @@
     </div>
   </div>
 
+  @if(accountType === 'Patient') {
+    <app-home-button
+      titleFR="Planning" titleEN="Planning"
+      icon="planning"
+      subtitleFR="Prendre et voir vos RDV" subtitleEN="Book and view your appointments"
+      path="planning"
+      [lang]="lang"
+    />
+
+    <app-home-button
+      titleFR="Séance" titleEN="Session"
+      icon="session"
+      subtitleFR="Commencez votre séance du jour" subtitleEN="Start your session for today"
+      path="session"
+      [lang]="lang"
+    />
+
+    <app-home-button
+      titleFR="Suivi" titleEN="Follow up"
+      icon="followup"
+      subtitleFR="Consultez vos progrès" subtitleEN="Check your progress"
+      path="followup"
+      [lang]="lang"
+    />
+  }
+
+  @else {
+    <app-home-button
+      titleFR="Planning" titleEN="Planning"
+      icon="planning"
+      subtitleFR="Programmer et voir vos RDV" subtitleEN="Schedule and view your appointments"
+      path="planning"
+      [lang]="lang"
+    />
+
+    <app-home-button
+      titleFR="Suivi" titleEN="Follow up"
+      icon="followup"
+      subtitleFR="Voir les progrès de vos patients" subtitleEN="Check your patients' progress"
+      path="followup"
+      [lang]="lang"
+    />
+  }
+
   <div class="bottom-wrapper">
     <button class="logout-btn" (click)="logout()">
       {{ lang === 'FR' ? 'Se déconnecter' : 'Logout' }}

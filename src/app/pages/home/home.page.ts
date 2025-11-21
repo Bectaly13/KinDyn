@@ -5,6 +5,7 @@ import { IonContent, ViewWillEnter } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 
 import { HeaderComponent } from 'src/app/components/header/header.component';
+import { HomeButtonComponent } from 'src/app/components/home-button/home-button.component';
 
 import { StorageService } from 'src/app/services/storage';
 import { DatabaseService, User, UserType } from 'src/app/services/database';
@@ -14,7 +15,7 @@ import { DatabaseService, User, UserType } from 'src/app/services/database';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [IonContent, CommonModule, FormsModule, HeaderComponent]
+  imports: [IonContent, CommonModule, FormsModule, HeaderComponent, HomeButtonComponent]
 })
 export class HomePage implements ViewWillEnter {
   lang: string = "";
