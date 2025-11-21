@@ -1,0 +1,78 @@
+.login-container {
+  --background: var(--background-light);
+}
+
+.center-wrapper {
+  display: flex;
+  justify-content: center;   // centrer vertical
+  align-items: center;       // centrer horizontal
+  min-height: calc(100vh - 60px); // 60px = header approximatif
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.form-wrapper {
+  width: 90%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 25px;
+  background-color: var(--background-grey); // gris clair pour contraster
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  color: var(--text);
+}
+
+input {
+  padding: 12px 10px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--input-border);
+  outline: none;
+
+  &:focus {
+    border-color: var(--input-border-focus);
+    box-shadow: 0 0 0 2px rgba(0,122,255,0.15);
+  }
+}
+
+button {
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--button);
+  color: white;
+  font-weight: 600;
+  transition: background 0.2s;
+
+  &:hover {
+    background-color: var(--button-hover);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+.register-btn {
+  background: none;
+  color: var(--hypertext);
+  text-decoration: underline;
+  font-weight: 500;
+  margin-top: 10px;
+  align-self: center;
+  cursor: pointer;
+}
+
+.error {
+  color: var(--error);
+  font-weight: 500;
+  text-align: center;
+}

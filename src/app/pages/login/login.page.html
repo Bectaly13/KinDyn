@@ -1,5 +1,28 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="login-container">
 
   <app-header titleFR="Se connecter" titleEN="Login" [lang]="lang"/>
+
+  <div class="center-wrapper">
+    <div class="form-wrapper">
+      <h2>{{ lang === 'FR' ? 'Connexion' : 'Login' }}</h2>
+
+      <input type="text" placeholder="{{ lang === 'FR' ? 'Nom d\'utilisateur' : 'Username' }}" [(ngModel)]="login" />
+      <input type="password" placeholder="{{ lang === 'FR' ? 'Mot de passe' : 'Password' }}" [(ngModel)]="password" />
+
+      <button (click)="tryLogin()">
+        {{ lang === 'FR' ? 'Se connecter' : 'Login' }}
+      </button>
+
+      @if(error) {
+        <div class="error">
+          {{ error }}
+        </div>
+      }
+
+      <span class="register-btn" (click)="goRegister()">
+        {{ lang === 'FR' ? 'Pas de compte ? Créez-en un ici' : 'No account? Register here' }}
+      </span>
+    </div>
+  </div>
 
 </ion-content>

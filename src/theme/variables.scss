@@ -3,6 +3,8 @@
 
 :root {
     --background-light: #fafafa;
+    --background-grey: #dedede;
+
     --header-background: #cfe9ff;
     --header-border-bottom: #b9d8f7;
     --header-title-color: #1a3e66;
@@ -13,4 +15,14 @@
 
     --text: #333;
     --text-muted: #555;
+
+    --input-border: #ccc;
+    --input-border-focus: #007aff;
+
+    --button: #007aff;
+    --button-hover: #005fcc;
+
+    --hypertext: #007aff;
+
+    --error: #d9534f;
 }

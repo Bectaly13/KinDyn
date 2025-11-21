@@ -5,6 +5,7 @@ import { IonContent, ViewWillEnter } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 
 import { StorageService } from 'src/app/services/storage';
+import { DatabaseService } from 'src/app/services/database';
 
 @Component({
   selector: 'app-welcome',
@@ -19,7 +20,8 @@ export class WelcomePage implements ViewWillEnter {
 
   constructor(
     private storage: StorageService,
-    private router: Router
+    private router: Router,
+    private database: DatabaseService
   ) { }
 
   async ionViewWillEnter() {
@@ -28,6 +30,7 @@ export class WelcomePage implements ViewWillEnter {
     this.lang = await this.storage.get("lang");
     if(!this.lang) {
       this.storage.set("lang", "FR");
+      this.lang = "FR";
     }
 
     if(this.lang == "FR") {
@@ -35,6 +38,19 @@ export class WelcomePage implements ViewWillEnter {
     }
     else {
       this.loadingMessage = "Language preferences fetched.";
+    }
+
+    let database_data = await this.storage.get("db");
+    if(!database_data) {
+      if(this.lang == "FR") {
+        this.loadingMessage = "Récupération de la base de données...";
+      }
+      else {
+        this.loadingMessage = "Fetching database...";
+      }
+
+      database_data = this.database.db;
+      this.storage.set("db", database_data);
     }
 
     if(this.lang == "FR") {
