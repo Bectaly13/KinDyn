@@ -97,6 +97,12 @@ export class RegisterPage implements ViewWillEnter {
       return;
     }
 
+    this.login = "";
+    this.firstName = "";
+    this.lastName = "";
+    this.password = "";
+    this.confirmPassword = "";
+
     // Créer le nouvel utilisateur
     const newUser: User = {
       id: users.length + 1,

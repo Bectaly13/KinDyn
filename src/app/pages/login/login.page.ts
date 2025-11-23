@@ -45,6 +45,9 @@ export class LoginPage implements ViewWillEnter {
       this.error = this.lang === 'FR' ? "Login ou mot de passe incorrect" : "Incorrect login or password";
       return;
     }
+    
+    this.login = "";
+    this.password = "";
 
     // Stocker l'utilisateur connecté
     await this.storage.set("user", user.id);
