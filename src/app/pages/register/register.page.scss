@@ -41,13 +41,16 @@ h2 {
 }
 
 input {
+  background-color: var(--input-background);
   padding: 12px 10px;
   font-size: 1rem;
   border-radius: 6px;
   border: 1px solid var(--input-border);
   outline: none;
+  color: var(--text);
 
   &:focus {
+    background-color: var(--input-background-focus);
     border-color: var(--input-border-focus);
     box-shadow: 0 0 0 2px var(--input-shadow-focus);
   }
