@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'frontend',
+  appId: 'io.ionic.kindyn',
+  appName: 'KinDyn',
   webDir: 'www'
 };
 
