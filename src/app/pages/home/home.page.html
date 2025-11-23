@@ -10,19 +10,13 @@
       </h2>
 
       <p class="account-type">
-        {{ lang === 'FR' ? 'Compte' : 'Account' }} :
-        @if(lang == "FR") {
-          {{ accountType }}
-        }
-        @else {
-          {{ accountType === 'Patient' ? 'Patient' : 'Specialist' }}
-        }
+        {{ lang === 'FR' ? 'Compte' : 'Account' }} : {{ lang === 'FR' ? accountTypeFR : accountTypeEN }}
       </p>
 
     </div>
   </div>
 
-  @if(accountType === 'Patient') {
+  @if(accountTypeFR === 'Patient') {
     <app-home-button
       titleFR="Planning" titleEN="Planning"
       icon="planning"

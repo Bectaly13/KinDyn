@@ -1,13 +1,152 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>planning</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="planning-container">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">planning</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <app-header titleFR="Planning" titleEN="Planning" [lang]="lang"/>
+
+  <app-back-button [lang]="lang"/>
+
+  <!-- HEADER MOIS -->
+  <div class="calendar-container">
+    <div class="month-header">
+      <button class="nav-btn" (click)="previousMonth()">‹</button>
+      <h2>
+        {{ currentMonth + 1 }}/{{ currentYear }}
+      </h2>
+      <button class="nav-btn" (click)="nextMonth()">›</button>
+    </div>
+
+    <!-- JOURS DE LA SEMAINE -->
+    <div class="week-days">
+      <div>{{ lang == "FR" ? "Lun" : "Mon"}}</div>
+      <div>{{ lang == "FR" ? "Mar" : "Tue"}}</div>
+      <div>{{ lang == "FR" ? "Mer" : "Wed"}}</div>
+      <div>{{ lang == "FR" ? "Jeu" : "Thu"}}</div>
+      <div>{{ lang == "FR" ? "Ven" : "Fri"}}</div>
+      <div>{{ lang == "FR" ? "Sam" : "Sat"}}</div>
+      <div>{{ lang == "FR" ? "Dim" : "Sun"}}</div>
+    </div>
+
+    <!-- CALENDRIER -->
+    <div class="calendar">
+      @for(week of calendar; track week) {
+        <div class="week-row">
+          @for(day of week; track day.date) {
+            <div class="day-cell"
+                (click)="openDayModal(day)"
+                [class.outside]="!day.inMonth"
+                [class.waiting]="day.state === 'waiting'"
+                [class.confirmed]="day.state === 'confirmed'">
+              {{ day.number }}
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- BLOC RDV EN ATTENTE (SPÉCIALISTE UNIQUEMENT) -->
+  @if(userType === 2 && pendingAppointments.length > 0) {
+    <div class="pending-container">
+      <h3>
+        {{ lang === 'FR' ? 'Rendez-vous en attente de confirmation' : 'Appointments pending confirmation' }}
+        ({{ pendingAppointments.length }})
+      </h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>{{ lang === 'FR' ? 'Patient' : 'Patient' }}</th>
+            <th>{{ lang === 'FR' ? 'Date et heure' : 'Date & Time' }}</th>
+            <th>{{ lang === 'FR' ? 'Motif' : 'Reason' }}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(appt of pendingAppointments; track appt.id) {
+            <tr>
+              <td>{{ getPatientName(appt.id_patient) }}</td>
+              <td>{{ appt.date }} {{ appt.time }}</td>
+              <td>{{ appt.reason || '-' }}</td>
+              <td>
+                <button class="accept" (click)="accept(appt)">✔</button>
+                <button class="refuse" (click)="refuse(appt)">✖</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
+  <!-- MODALE JOUR -->
+  <ion-modal [isOpen]="dayModalOpen" (didDismiss)="closeModal()">
+    <ng-template>
+      <div class="modal-wrapper">
+        <h2>{{ selectedDate }}</h2>
+
+        <!-- RDV EN ATTENTE (CLIENT) -->
+        @if(userType === 1 && selectedWaiting.length > 0) {
+          <h3>{{ lang === 'FR' ? 'Rendez-vous en attente' : 'Pending appointments' }}</h3>
+          @for(appt of selectedWaiting; track appt.id) {
+            <div class="appt">
+              <p>{{ getSpecialistName(appt.id_specialist) }} — {{ appt.time }}</p>
+              <p>{{ appt.reason || '-' }}</p>
+              <button class="cancel" (click)="cancelAppointment(appt)">
+                {{ lang === 'FR' ? 'Annuler' : 'Cancel' }}
+              </button>
+            </div>
+          }
+        }
+
+        <!-- RDV CONFIRMÉS -->
+        @if(selectedConfirmed.length > 0) {
+          <h3>{{ lang === 'FR' ? 'Rendez-vous confirmés' : 'Confirmed appointments' }}</h3>
+          @for(appt of selectedConfirmed; track appt.id) {
+            <div class="appt">
+              <p>
+                {{ userType === 1 ? getSpecialistName(appt.id_specialist) : getPatientName(appt.id_patient) }}  
+                — {{ appt.time }}
+              </p>
+              <p>{{ appt.reason || '-' }}</p>
+              <button class="cancel" (click)="cancelAppointment(appt)">
+                {{ lang === 'FR' ? 'Supprimer' : 'Delete' }}
+              </button>
+            </div>
+          }
+        }
+
+        <!-- FORMULAIRE NOUVEAU RDV (CLIENT UNIQUEMENT) -->
+        @if(userType === 1) {
+          <h3>{{ lang === 'FR' ? 'Demander un rendez-vous' : 'Book an appointment' }}</h3>
+
+          <label>{{ lang === 'FR' ? 'Spécialiste' : 'Specialist' }}</label>
+          <select [(ngModel)]="formSpecialist">
+            @for(sp of specialists ; track $index) {
+              <option [value]="sp.id">
+                {{ sp.firstName }} {{ sp.lastName }}
+              </option>
+            }            
+          </select>
+
+          <label>{{ lang === 'FR' ? 'Heure' : 'Time' }}</label>
+          <select [(ngModel)]="formTime">
+            @for(slot of timeSlots ; track $index) {
+              <option [value]="slot">
+                {{ slot }}
+              </option>
+            }
+          </select>
+
+          <label>{{ lang === 'FR' ? 'Raison (optionnelle)' : 'Reason (optional)' }}</label>
+          <textarea [(ngModel)]="formReason"></textarea>
+
+          <button class="validate" (click)="createAppointment()">
+            {{ lang === 'FR' ? 'Demander un rendez-vous' : 'Book an appointment' }}
+          </button>
+        }
+
+        <button class="close-btn" (click)="dayModalOpen = false">✖</button>
+      </div>
+    </ng-template>
+  </ion-modal>
+
 </ion-content>

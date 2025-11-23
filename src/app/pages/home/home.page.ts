@@ -22,7 +22,8 @@ export class HomePage implements ViewWillEnter {
   userId: number = 0;
 
   firstName: string = "";
-  accountType: string = "";
+  accountTypeFR: string = "";
+  accountTypeEN: string = "";
 
   constructor(
     private storage: StorageService,
@@ -46,7 +47,8 @@ export class HomePage implements ViewWillEnter {
     const type: UserType = types.find((t: UserType) => t.id === user.id_type);
 
     this.firstName = user.firstName;
-    this.accountType = type.type;
+    this.accountTypeFR = type.typeFR;
+    this.accountTypeEN = type.typeEN;
   }
 
   async logout() {
