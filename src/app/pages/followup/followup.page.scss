@@ -1,0 +1,68 @@
+.followup-container {
+  --background: var(--background-light);
+}
+
+.followup-wrapper {
+  padding: 16px;
+}
+
+.patient-selector {
+  margin-bottom: 20px;
+
+  label {
+    color: var(--text);
+    font-weight: bold;
+  }
+
+  select {
+    width: 100%;
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: var(--planning-modal-select);
+    color: var(--text);
+  }
+}
+
+.sessions-table {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+
+    th {
+      background: var(--header-background);
+      padding: 10px;
+      font-weight: bold;
+      color: var(--title);
+      border-bottom: 1px solid var(--header-border-bottom);
+    }
+
+    td {
+      padding: 10px;
+      border-bottom: 1px solid #eaeaea;
+      color: var(--text);
+    }
+
+    .date-time {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
+}
+
+.no-data {
+  text-align: center;
+  color: var(--text-muted);
+  margin-top: 20px;
+  font-style: italic;
+}

@@ -1,13 +1,54 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>followup</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="followup-container">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">followup</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <app-header titleFR="Suivi" titleEN="Follow up" [lang]="lang"/>
+
+  <app-back-button [lang]="lang"/>
+
+    <div class="followup-wrapper">
+
+    <!-- Spécialiste : choisir un patient -->
+    <div *ngIf="isSpecialist" class="patient-selector">
+      <label for="patientSelect">
+        {{ lang === 'FR' ? 'Sélectionner un patient :' : 'Select a patient:' }}
+      </label>
+
+      <select id="patientSelect" [(ngModel)]="selectedPatientId" (change)="loadSessions()">
+        <option *ngFor="let p of patients" [value]="p.id">{{ p.name }}</option>
+      </select>
+    </div>
+
+    <!-- Tableau des séances -->
+    <div class="sessions-table" *ngIf="sessions && sessions.length > 0; else noSessions">
+      <table>
+        <thead>
+          <tr>
+            <th>{{ lang === 'FR' ? 'Date & Heure' : 'Date & Time' }}</th>
+            <th>{{ lang === 'FR' ? 'Note' : 'Note' }}</th>
+            <th>{{ lang === 'FR' ? 'Score' : 'Score' }}</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let s of sessions">
+            <td>
+              <div class="date-time">
+                <div>{{ s.date }}</div>
+                <div>{{ s.time }}</div>
+              </div>
+            </td>
+            <td>{{ s.note && s.note.trim() !== '' ? s.note : '-' }}</td>
+            <td>{{ s.score }}%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #noSessions>
+      <p class="no-data">
+        {{ lang === 'FR' ? "Aucune séance trouvée." : "No session found." }}
+      </p>
+    </ng-template>
+
+  </div>
+
 </ion-content>

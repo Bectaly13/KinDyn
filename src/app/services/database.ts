@@ -32,6 +32,15 @@ export interface AppointmentState {
   state: string;
 }
 
+export interface Session {
+  id: number;
+  id_patient: number;
+  date: string;
+  time: string;
+  note: string;
+  score: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -105,6 +114,31 @@ export class DatabaseService {
     appointmentStates: [
       { id: 1, stateFR: "En attente de confirmation", stateEN: "Waiting for confirmation" },
       { id: 2, stateFR: "Confirmé", stateEN: "Confirmed" }
+    ],
+    sessions: [
+      { id: 1, id_patient: 1, date: "15/10/2025", time: "09:20", note: "Bonne mobilité cervicale aujourd’hui.", score: 82 },
+      { id: 2, id_patient: 1, date: "18/10/2025", time: "10:05", note: "", score: 75 },
+      { id: 3, id_patient: 1, date: "22/10/2025", time: "09:55", note: "Douleur légère à la hanche en fin de séance.", score: 68 },
+      { id: 4, id_patient: 1, date: "28/10/2025", time: "11:15", note: "Étirements mieux exécutés.", score: 88 },
+
+      { id: 5, id_patient: 2, date: "12/10/2025", time: "14:40", note: "Progrès sur l’équilibre.", score: 91 },
+      { id: 6, id_patient: 2, date: "19/10/2025", time: "15:10", note: "", score: 73 },
+      { id: 7, id_patient: 2, date: "24/10/2025", time: "14:55", note: "Moins de raideur au genou droit.", score: 79 },
+      { id: 8, id_patient: 2, date: "30/10/2025", time: "16:05", note: "Bonne progression générale.", score: 90 },
+
+      { id: 9, id_patient: 3, date: "10/10/2025", time: "08:50", note: "", score: 65 },
+      { id: 10, id_patient: 3, date: "16/10/2025", time: "09:30", note: "Respiration bien maîtrisée.", score: 92 },
+      { id: 11, id_patient: 3, date: "21/10/2025", time: "08:40", note: "Difficulté sur les flexions profondes.", score: 58 },
+      { id: 12, id_patient: 3, date: "25/10/2025", time: "10:00", note: "Bonne séance, moins de douleurs lombaires.", score: 84 },
+
+      { id: 13, id_patient: 1, date: "03/11/2025", time: "10:13", note: "Progrès significatifs", score: 73 },
+      { id: 14, id_patient: 2, date: "04/11/2025", time: "14:50", note: "", score: 85 },
+      { id: 15, id_patient: 3, date: "05/11/2025", time: "09:10", note: "Bonne stabilité.", score: 89 },
+      { id: 16, id_patient: 1, date: "08/11/2025", time: "09:45", note: "Toujours sensible à la rotation.", score: 62 },
+      { id: 17, id_patient: 2, date: "09/11/2025", time: "15:00", note: "Meilleure posture globale.", score: 95 },
+      { id: 18, id_patient: 3, date: "11/11/2025", time: "11:20", note: "", score: 77 },
+      { id: 19, id_patient: 1, date: "13/11/2025", time: "10:10", note: "Étirements réalisés sans gêne.", score: 93 },
+      { id: 20, id_patient: 2, date: "14/11/2025", time: "16:10", note: "Moins de tensions musculaires.", score: 88 }
     ]
   };
 
