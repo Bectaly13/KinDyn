@@ -20,7 +20,7 @@
     padding: 10px;
     border-radius: 10px;
     border: none;
-    background: var(--planning-modal-select);
+    background: var(--followup-select);
     color: var(--text);
   }
 }
@@ -32,19 +32,19 @@
     background: white;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 10px var(--box-shadow);
 
     th {
-      background: var(--header-background);
+      background: var(--followup-table-header);
       padding: 10px;
       font-weight: bold;
       color: var(--title);
-      border-bottom: 1px solid var(--header-border-bottom);
+      border-bottom: 1px solid var(--followup-table-header-border-bottom);
     }
 
     td {
       padding: 10px;
-      border-bottom: 1px solid #eaeaea;
+      border-bottom: 1px solid var(--followup-table-line);
       color: var(--text);
     }
 

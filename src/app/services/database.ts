@@ -41,6 +41,22 @@ export interface Session {
   score: number;
 }
 
+export interface SessionData {
+  id: number;
+  type: number;
+  code: string;
+  titleFR: string;
+  titleEN: string;
+  content: number[];
+}
+
+export interface Exercise {
+  id: number;
+  nameFR: string;
+  nameEN: string;
+  duration: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -139,7 +155,76 @@ export class DatabaseService {
       { id: 18, id_patient: 3, date: "11/11/2025", time: "11:20", note: "", score: 77 },
       { id: 19, id_patient: 1, date: "13/11/2025", time: "10:10", note: "Étirements réalisés sans gêne.", score: 93 },
       { id: 20, id_patient: 2, date: "14/11/2025", time: "16:10", note: "Moins de tensions musculaires.", score: 88 }
-    ]
+    ],
+    exercises: [
+      { id: 1, nameFR: "Étirement des quadriceps", nameEN: "Quadriceps stretch", duration: 30 },
+      { id: 2, nameFR: "Étirement des ischio-jambiers", nameEN: "Hamstring stretch", duration: 30 },
+      { id: 3, nameFR: "Flexions de genoux", nameEN: "Knee bends", duration: 45 },
+
+      { id: 4, nameFR: "Étirement des épaules", nameEN: "Shoulder stretch", duration: 30 },
+      { id: 5, nameFR: "Rotation des bras", nameEN: "Arm rotations", duration: 40 },
+
+      { id: 6, nameFR: "Gainage", nameEN: "Plank", duration: 60 },
+      { id: 7, nameFR: "Étirement du dos", nameEN: "Back stretch", duration: 45 },
+      { id: 8, nameFR: "Respiration contrôlée", nameEN: "Controlled breathing", duration: 60 }
+    ],
+    sessionDatas: [
+      // --- JAMBES (type 1) ---
+      {
+        id: 1,
+        type : 1,
+        code: "JAM_001",
+        titleFR: "Étirements des jambes",
+        titleEN: "Leg stretches",
+        content: [1, 2]
+      },
+      {
+        id: 2,
+        type : 1,
+        code: "JAM_002",
+        titleFR: "Renforcement des genoux",
+        titleEN: "Knee strengthening",
+        content: [3]
+      },
+
+      // --- BRAS ---
+      {
+        id: 3,
+        type : 2,
+        code: "BRA_001",
+        titleFR: "Mobilité des épaules",
+        titleEN: "Shoulder mobility",
+        content: [4, 5]
+      },
+
+      // --- DOS ---
+      {
+        id: 4,
+        type : 3,
+        code: "DOS_001",
+        titleFR: "Détente du dos",
+        titleEN: "Back relaxation",
+        content: [7, 8]
+      },
+
+      // --- CORPS COMPLET ---
+      {
+        id: 5,
+        type : 4,
+        code: "COR_001",
+        titleFR: "Séance corps complet",
+        titleEN: "Full body session",
+        content: [1, 4, 6]
+      },
+      {
+        id: 6,
+        type : 4,
+        code: "COR_002",
+        titleFR: "Étirements globaux",
+        titleEN: "Global stretching",
+        content: [2, 5, 8]
+      }
+    ],
   };
 
   constructor(

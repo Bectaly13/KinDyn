@@ -1,0 +1,34 @@
+<ion-content [fullscreen]="true" class="session-start-container">
+
+  <app-header
+    titleFR="Commencer séance"
+    titleEN="Start session"
+    [lang]="lang"
+  ></app-header>
+
+  <div class="session-start-page">
+    <button class="back-btn" (click)="goBack()">
+      ← {{ lang === 'FR' ? 'Retour' : 'Back' }}
+    </button>
+
+    <h2 class="title">
+      {{ lang === 'FR' ? sessionData?.titleFR : sessionData?.titleEN }}
+    </h2>
+
+    <div class="exercise-list">
+      <div class="exercise" *ngFor="let ex of exercises">
+        <div class="exercise-name">
+          {{ lang === 'FR' ? ex.nameFR : ex.nameEN }}
+        </div>
+        <div class="exercise-duration">
+          {{ ex.duration }} s
+        </div>
+      </div>
+    </div>
+
+    <button class="start-btn" (click)="startSession()">
+      {{ lang === 'FR' ? 'Commencer' : 'Start' }}
+    </button>
+  </div>
+
+</ion-content>

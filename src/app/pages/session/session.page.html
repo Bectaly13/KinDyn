@@ -1,13 +1,70 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>session</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="session-container">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">session</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <app-header
+    titleFR="Séance"
+    titleEN="Session"
+    [lang]="lang"
+  ></app-header>
+
+  <div class="session-page">
+
+    <div class="header">
+      <div class="session-icon">
+        <img [src]="'assets/pictograms/session_types/' + sessionData.type + '.png'">
+      </div>
+      <div class="session-title">
+        {{ lang === 'FR' ? sessionData?.titleFR : sessionData?.titleEN }}
+      </div>
+
+      <div class="progress">
+        {{ currentExerciseIndex + 1 }} / {{ exercises.length }}
+      </div>
+    </div>
+
+    <div class="exercise-name">
+      {{ lang === 'FR' ? currentExercise?.nameFR : currentExercise?.nameEN }}
+    </div>
+
+    <div class="exercise-image">
+      <img
+        [src]="'assets/exercises/' + currentExercise?.id + '.png'"
+        alt="exercise"
+      />
+    </div>
+
+    <div class="timer">
+      {{ remainingTime }} s
+    </div>
+
+    <div class="controls">
+      <button class="pause" (click)="togglePause()">
+        {{ isPaused
+          ? (lang === 'FR' ? 'Reprendre' : 'Resume')
+          : (lang === 'FR' ? 'Pause' : 'Pause') }}
+      </button>
+
+      <button class="skip" (click)="nextExercise()">
+        {{ isLastExercise
+          ? (lang === 'FR' ? 'Terminer' : 'Finish')
+          : (lang === 'FR' ? 'Passer' : 'Skip') }}
+      </button>
+    </div>
+
+    <div class="score">
+      <div class="score-label">
+        {{ lang === 'FR' ? 'Score :' : 'Score:' }} {{score}}%
+      </div>
+      <div class="score-bar">
+        <div class="score-fill" [style.width.%]="score" [style.background]="scoreColor"></div>
+      </div>
+    </div>
+
+    <div class="abort">
+      <button (click)="openAlert()">
+        {{ lang === 'FR' ? 'Quitter' : 'Abort' }}
+      </button>
+    </div>
+
+  </div>
+
 </ion-content>

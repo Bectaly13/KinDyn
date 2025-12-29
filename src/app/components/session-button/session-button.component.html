@@ -1,0 +1,9 @@
+<div class="session-button" (click)="goTo()">
+  <div class="icon">
+    <img [src]="'assets/pictograms/session_types/' + type() + '.png'">
+  </div>
+
+  <div class="code">{{ code() }}</div>
+
+  <div class="title">{{ title }}</div>
+</div>

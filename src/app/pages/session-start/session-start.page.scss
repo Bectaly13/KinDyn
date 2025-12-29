@@ -1,0 +1,73 @@
+.session-start-container {
+  --background: var(--background-light);
+}
+
+.session-start-page {
+    padding: 10px;
+}
+
+.back-btn {
+  display: block;
+  margin: 10px auto 20px auto; /* centré + espace dessous */
+
+  background: transparent;
+  border: 2px solid var(--button);
+  color: var(--text-muted);
+
+  padding: 8px 18px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+
+  &:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 6px var(--box-shadow);
+  }
+}
+
+.title {
+  text-align: center;
+  color: var(--title);
+  margin-bottom: 20px;
+}
+
+.exercise-list {
+  margin-bottom: 30px;
+}
+
+.exercise {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border-radius: 12px;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 3px 8px var(--box-shadow);
+}
+
+.exercise-name {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.exercise-duration {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.start-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--button);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 14px;
+  font-size: 1.1rem;
+
+  &:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 6px var(--box-shadow);
+  }
+}

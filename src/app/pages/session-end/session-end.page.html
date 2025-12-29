@@ -1,0 +1,32 @@
+<ion-content [fullscreen]="true" class="session-end-container">
+
+  <app-header
+    titleFR="Fin de séance"
+    titleEN="Session End"
+    [lang]="lang"
+  ></app-header>
+
+  <div class="content">
+
+    <h2 class="session-title">
+      {{ lang === 'FR' ? sessionData?.titleFR : sessionData?.titleEN }}
+    </h2>
+
+    <div class="score-display">
+      {{ score }}%
+    </div>
+
+    <div class="comment-section">
+      <label for="comment">
+        {{ lang === 'FR' ? 'Vos commentaires (facultatif) :' : 'Your comments (optionnal):' }}
+      </label>
+      <textarea id="comment" [(ngModel)]="comment" placeholder="{{ lang === 'FR' ? 'Écrivez ici...' : 'Write here...' }}"></textarea>
+    </div>
+
+    <button class="home-btn" (click)="goHome()">
+      {{ lang === 'FR' ? 'Retour au menu' : 'Back to Home' }}
+    </button>
+
+  </div>
+
+</ion-content>

@@ -1,0 +1,23 @@
+<ion-content [fullscreen]="true" class="session-selection-container">
+
+  <app-header
+    titleFR="Sélection de séance"
+    titleEN="Session selection"
+    [lang]="lang"
+  ></app-header>
+
+  <app-back-button [lang]="lang"></app-back-button>
+
+  <div class="sessions-grid">
+    <app-session-button
+      *ngFor="let session of sessionDatas"
+      [sessionId]="session.id"
+      [type]="session.type"
+      [code]="session.code"
+      [titleFR]="session.titleFR"
+      [titleEN]="session.titleEN"
+      [lang]="lang"
+    ></app-session-button>
+  </div>
+
+</ion-content>
