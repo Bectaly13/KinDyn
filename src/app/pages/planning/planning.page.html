@@ -115,7 +115,7 @@
         }
 
         <!-- FORMULAIRE NOUVEAU RDV (CLIENT UNIQUEMENT) -->
-        @if(userType === 1) {
+        @if(userType === 1 && canBook) {
           <h3>{{ lang === 'FR' ? 'Demander un rendez-vous' : 'Book an appointment' }}</h3>
 
           <label>{{ lang === 'FR' ? 'Spécialiste' : 'Specialist' }}</label>

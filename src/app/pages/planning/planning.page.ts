@@ -41,6 +41,8 @@ export class PlanningPage implements ViewWillEnter {
   formTime: string = "";
   formReason: string = "";
 
+  canBook: boolean = true;
+
   async ionViewWillEnter() {
     this.lang = await this.storage.get("lang");  
     this.userId = await this.storage.get("user");  
@@ -115,16 +117,21 @@ export class PlanningPage implements ViewWillEnter {
           dateNumber = dayCounter++;
         }
 
-        const dateObj = new Date(this.currentYear, this.currentMonth, inMonth ? dateNumber : 1);
-        const formatted = this.formatDate(dateObj);
+        const dateObj = inMonth 
+            ? new Date(this.currentYear, this.currentMonth, dateNumber)
+            : null; // pas de date réelle pour hors-mois
 
-        const dayAppointments = this.appointments.filter(a => a.date === formatted);
+        const formatted = dateObj ? this.formatDate(dateObj) : '';
+
+        const dayAppointments = inMonth
+            ? this.appointments.filter(a => a.date === formatted)
+            : [];
 
         row.push({
           date: formatted,
           number: dateNumber,
           inMonth,
-          state: this.resolveDayState(dayAppointments)
+          state: inMonth ? this.resolveDayState(dayAppointments) : 'none' // for outside days
         });
       }
 
@@ -233,6 +240,15 @@ export class PlanningPage implements ViewWillEnter {
 
     this.selectedDate = day.date;
 
+    // Vérifier si la date est passée
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // ignorer heures/minutes
+
+    const [dd, mm, yyyy] = day.date.split('/');
+    const dayDate = new Date(Number(yyyy), Number(mm) - 1, Number(dd));
+
+    this.canBook = this.userType === 1 && dayDate >= today; // seulement patient + date future ou aujourd'hui
+
     this.selectedWaiting = this.appointments.filter(a => 
       a.date === day.date && a.id_state === 1
     );
@@ -241,9 +257,8 @@ export class PlanningPage implements ViewWillEnter {
       a.date === day.date && a.id_state === 2
     );
 
-    // Charger la liste des spécialistes si client
     if (this.userType === 1) {
-      this.specialists = this.db.db.users.filter((u: User) => u.id_type === 2);
+      this.specialists = this.db.db.users.filter((u: any) => u.id_type === 2);
       this.formSpecialist = this.specialists[0]?.id;
       this.formTime = this.timeSlots[0];
     }
