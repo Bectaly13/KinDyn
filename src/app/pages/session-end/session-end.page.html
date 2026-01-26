@@ -1,6 +1,7 @@
 <ion-content [fullscreen]="true" class="session-end-container">
 
   <app-header
+    [home]="false"
     titleFR="Fin de séance"
     titleEN="Session End"
     [lang]="lang"
@@ -26,6 +27,13 @@
     <button class="home-btn" (click)="goHome()">
       {{ lang === 'FR' ? 'Retour au menu' : 'Back to Home' }}
     </button>
+
+    <span class="warning">
+      {{ lang === 'FR' ?
+        'Appuyer sur ce bouton pour enregistrer cette séance dans votre suivi.'
+        :
+        'Press this button to save this session in your follow up.'}}
+    </span>
 
   </div>
 
