@@ -1,16 +1,26 @@
 <header class="header-bar">
+
   <div class="left">
-    <img src="assets/icon/kindyn.png" class="logo" />
-      @if(lang() == "FR") {
-        <span class="title">{{ titleFR() }}</span>
-      }
-      @else {
-        <span class="title">{{ titleEN() }}</span>
-      }
+
+    @if(home()) {
+      <img src="assets/icon/kindyn.png" class="logo" (click)="goHome()"/>
+    }
+    @else {
+      <img src="assets/icon/kindyn.png" class="logo" />
+    }
+
+    @if(lang() == "FR") {
+      <span class="title">{{ titleFR() }}</span>
+    }
+    @else {
+      <span class="title">{{ titleEN() }}</span>
+    }
+
   </div>
 
   <button class="lang-button" (click)="toggleLang()">
     <img [src]="'assets/lang/' + lang() + '.png'" class="lang-icon" />
     <span class="lang-text">{{ lang() }}</span>
   </button>
+
 </header>

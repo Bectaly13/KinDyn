@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { StorageService } from 'src/app/services/storage';
 
@@ -8,12 +9,14 @@ import { StorageService } from 'src/app/services/storage';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  home = input<boolean>(true);
   titleFR = input.required<string>();
   titleEN = input.required<string>();
   lang = input.required<string>();
 
   constructor(
-    private storage: StorageService
+    private storage: StorageService,
+    private router: Router
   ) { }
 
   async toggleLang() {
@@ -25,5 +28,9 @@ export class HeaderComponent {
     }
 
     window.location.reload();
+  }
+
+  goHome() {
+    this.router.navigate(["home"]);
   }
 }

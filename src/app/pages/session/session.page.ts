@@ -119,6 +119,10 @@ export class SessionPage implements ViewWillEnter {
   }
 
   async openAlert() {
+    const title: any = {
+      FR: "Quitter",
+      EN: "Abort"
+    }
     const message: any = {
       FR: "Êtes-vous sûre de vouloir quitter la séance ?",
       EN: "Are you sure you want to abort the session?"
@@ -126,13 +130,13 @@ export class SessionPage implements ViewWillEnter {
     const no: any = {
       FR: "Non",
       EN: "No"
-    }
+    };
     const yes: any = {
       FR: "Oui",
       EN: "Yes"
-    }
+    };
     this.alertController.create({
-      header: 'Erreur',
+      header: '',
       message: message[this.lang],
       buttons: [
         {
